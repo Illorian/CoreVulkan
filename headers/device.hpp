@@ -1,4 +1,5 @@
 #pragma once
+//#include "common.hpp"
 
 class Devices {
 
@@ -6,6 +7,14 @@ class Devices {
 
 
 	private:
+
+	//VKPhysicalDevice PickingAlgorithm(std::vector<VKPhysicalDevice>& deviceList)
+	//{
+
+		
+		
+		
+//}
 
 
 };

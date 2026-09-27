@@ -59,6 +59,9 @@ public:
         for (auto imageView : swapChainImageViews) {
             vkDestroyImageView(device, imageView, nullptr);
         }
+        std::cout << "device: " << device << std::endl;
+        std::cout << "graphicsPipeline: " << graphicsPipeline << std::endl;
+
 
         vkDestroyPipeline(device, graphicsPipeline, nullptr);
 
@@ -81,6 +84,13 @@ public:
         vkDestroySwapchainKHR(device, swapChain, nullptr);
         vkDestroyDevice(device, nullptr);
         vkDestroySurfaceKHR(instance, surface, nullptr);
+
+        if (enableValidationLayers) {
+
+            std::cout<<"Hello World!\n"<<std::endl;
+            DestroyDebugUtilsMessengerEXT(instance, debugMessenger, nullptr);
+        }
+
         vkDestroyInstance(instance, nullptr);
 
         glfwDestroyWindow(window);
@@ -529,6 +539,8 @@ private:
         createSurface();
         pickPhysicalDevice();
         createLogicalDevice();
+
+        std::cout << "Created VkDevice: " << device << std::endl;
         createSwapChain();
         createImageViews();
         createRenderPass();
@@ -677,8 +689,11 @@ private:
 
     void createGraphicsPipeline() {
 
-        auto vertShaderCode = readFile("shaders/compiled/vshader.vert.spv");
-        auto fragShaderCode = readFile("shaders/compiled/fshader.frag.spv");
+        std::string vertFile = std::string(SHADER_DIR) + "/compiled/vshader.vert.spv";
+        std::string fragFile = std::string(SHADER_DIR) + "/compiled/fshader.frag.spv";
+
+        auto vertShaderCode = readFile(vertFile);
+        auto fragShaderCode = readFile(fragFile);
 
         //frag + vert shader setup
         VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
