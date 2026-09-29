@@ -1,4 +1,9 @@
-#include "headers/common.hpp"
+#include "common.hpp"
+#include "validationlayers.hpp"
+#include "extensionlayers.hpp"
+#include "pipeline.hpp"
+#include "buffers.hpp"
+#include "device.hpp"
 
 //Global constants, mostly for window params
 const char Title[] = "Vulkan Minecraft Clone";
@@ -59,9 +64,6 @@ public:
         for (auto imageView : swapChainImageViews) {
             vkDestroyImageView(device, imageView, nullptr);
         }
-        std::cout << "device: " << device << std::endl;
-        std::cout << "graphicsPipeline: " << graphicsPipeline << std::endl;
-
 
         vkDestroyPipeline(device, graphicsPipeline, nullptr);
 
@@ -86,8 +88,6 @@ public:
         vkDestroySurfaceKHR(instance, surface, nullptr);
 
         if (enableValidationLayers) {
-
-            std::cout<<"Hello World!\n"<<std::endl;
             DestroyDebugUtilsMessengerEXT(instance, debugMessenger, nullptr);
         }
 

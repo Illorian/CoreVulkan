@@ -23,8 +23,3 @@
 
 //-----------------
 
-#include "headers/validationlayers.hpp"
-#include "headers/extensionlayers.hpp"
-#include "headers/pipeline.hpp"
-#include "headers/buffers.hpp"
-#include "headers/device.hpp"
